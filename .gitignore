@@ -1,0 +1,16 @@
+# Compiled plugin — hosted on SpaceDock, not the source repo
+Plugins/*.dll
+
+# Local backups / intermediate texture originals — not for publication
+*.bak*
+*.orig*
+*.patch_base
+
+# Windows / editor cruft
+Thumbs.db
+desktop.ini
+.vs/
+*.user
+*.suo
+bin/
+obj/
