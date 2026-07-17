@@ -20,6 +20,9 @@ HUD elements, replacing fonts, or running a layout plugin every frame.
 2. Copy `GameData/KerbalUI` from this ZIP into KSP's `GameData` folder.
 3. Keep the folder name exactly `KerbalUI`; the texture paths use that name.
 
+Dependency chain: HUDReplacer requires ModuleManager and HarmonyKSP. ZTheme
+requires HUDReplacer and ModuleManager. CKAN can install the complete chain.
+
 ## Uninstall
 
 Delete `GameData/KerbalUI`. ZTheme will take over again automatically.

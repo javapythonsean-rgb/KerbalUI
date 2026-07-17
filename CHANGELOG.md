@@ -8,6 +8,8 @@
   from the distributed package.
 - Use the public mod name for the install folder: `GameData/KerbalUI`.
 - Add complete README, license, SpaceDock, KSP-AVC, CKAN, and source metadata.
+- Add a 695-check audit covering every PNG, configured texture path,
+  dependency, manifest, and forbidden layout/plugin file.
 
 ## 1.3.1
 

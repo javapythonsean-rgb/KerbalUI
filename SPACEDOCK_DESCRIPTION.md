@@ -15,9 +15,12 @@ Version 1.5.0 fixes the installation package so it works immediately at
 It also removes the old layout plugin and font files from the release so Kerbal
 UI does exactly one job: apply the blue theme.
 
-**KSP:** 1.12.x  
-**Requires:** ModuleManager, HUDReplacer, and ZTheme  
+**KSP:** 1.12.x
+**Requires:** ModuleManager, HUDReplacer, and ZTheme
+**Nested dependencies:** HUDReplacer requires ModuleManager and HarmonyKSP;
+ZTheme requires HUDReplacer and ModuleManager.
 **License:** GPL-3.0-only
+**Source:** https://github.com/javapythonsean-rgb/KerbalUI
 
 Install the dependencies, then copy `GameData/KerbalUI` into KSP's
 `GameData` folder. README, changelog, license, generator source, KSP-AVC version
