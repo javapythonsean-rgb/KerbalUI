@@ -3,34 +3,36 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-// KSP2-style recolor engine for the Kerbal UI texture pack (derived from ZTheme, GPLv3).
-// v3: adds per-file rules - dark dV boxes w/ gold frames, all-green warp chevrons,
-// KSP2 steel-blue frame tracing on panel backgrounds.
-public static class Ksp2Recolor
+// Dark-blue recolor engine for the Kerbal UI texture pack (derived from ZTheme, GPLv3).
+// v4: gives every neutral surface the same Zed navy ramp and maps all decorative
+// blue/purple accents to one vivid Zed blue. Semantic red, gold, green, and teal
+// indicators remain distinct so warnings and instrument states stay readable.
+public static class KerbalUiRecolor
 {
-    // "terminal-dark" ramp matched to real KSP2 flight/VAB screenshots
+    // Unified Zed navy ramp. Dark and mid-tone source grays become blue surfaces;
+    // the light end stays readable for text, ticks, and small symbols.
     static readonly int[] AL = { 0, 20, 37, 50, 66, 82, 98, 128, 160, 192, 224, 240, 255 };
     static readonly int[,] AC = {
         {0x00,0x00,0x00},
-        {0x0A,0x0E,0x18},
-        {0x13,0x1A,0x2A}, // panel
-        {0x17,0x20,0x32},
-        {0x26,0x31,0x4A}, // tile/header
-        {0x33,0x40,0x5C},
-        {0x42,0x50,0x6E},
-        {0x63,0x71,0x90},
-        {0x87,0x93,0xAC},
-        {0xAC,0xB5,0xC8},
-        {0xD0,0xD5,0xDE},
-        {0xE8,0xEB,0xF0},
-        {0xF6,0xF8,0xFB}
+        {0x07,0x0D,0x18},
+        {0x0D,0x17,0x28}, // panel
+        {0x10,0x21,0x3A},
+        {0x16,0x34,0x5A}, // tile/header
+        {0x1D,0x47,0x75},
+        {0x2A,0x5B,0x91},
+        {0x4A,0x79,0xB1},
+        {0x73,0x97,0xC6},
+        {0xA2,0xB9,0xD8},
+        {0xC8,0xD5,0xE6},
+        {0xE1,0xE9,0xF3},
+        {0xF5,0xF8,0xFC}
     };
 
     const double HU_RED = 359.2, SA_RED = 0.67;
     const double HU_GOLD = 44.7, SA_GOLD = 0.98;
     const double HU_GREEN = 142.8, SA_GREEN = 1.00;
     const double HU_TEAL = 183.5, SA_TEAL = 0.95;
-    const double HU_PERI = 240.9, SA_PERI = 0.59;
+    const double HU_BLUE = 216.0, SA_BLUE = 0.88;
 
     const int ChromaNeutral = 28;
     const int ChromaAccent = 48;
@@ -57,9 +59,9 @@ public static class Ksp2Recolor
         "ShipNameBackground", "StageGroupBackground_square"
     };
 
-    // KSP2 frame colors: periwinkle hairline (#3C3E92 base, glows #6564FE active) - the
-    // core KSP2 panel signature; gold for VAB/dV boxes
-    static readonly Color BlueFrame = Color.FromArgb(255, 0x45, 0x48, 0xA6);
+    // One frame blue is shared with every decorative blue/purple source accent.
+    // Gold is retained only for the dV readout where it conveys a distinct state.
+    static readonly Color BlueFrame = Color.FromArgb(255, 0x2F, 0x80, 0xED);
     static readonly Color GoldFrame = Color.FromArgb(255, 0xC9, 0x94, 0x11);
 
     static bool NameMatches(string fileName, string[] list)
@@ -147,7 +149,7 @@ public static class Ksp2Recolor
         else if (h < 70) { th = HU_GOLD; ts = SA_GOLD; tv = 0.937; }
         else if (h < 165) { th = HU_GREEN; ts = SA_GREEN; tv = 0.910; }
         else if (h < 212) { th = HU_TEAL; ts = SA_TEAL; tv = 0.769; }
-        else { th = HU_PERI; ts = SA_PERI; tv = 0.871; }
+        else { th = HU_BLUE; ts = SA_BLUE; tv = 0.949; }
 
         v = Math.Min(v, tv + 0.12);
         double outS = ts * Math.Min(1.0, s / 0.55);

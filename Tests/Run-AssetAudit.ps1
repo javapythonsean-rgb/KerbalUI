@@ -16,6 +16,10 @@ Assert-True (Test-Path -LiteralPath (Join-Path $modRoot 'config.cfg')) 'config.c
 Assert-True (Test-Path -LiteralPath (Join-Path $modRoot 'KerbalUI.version')) 'KerbalUI.version is missing.'
 Assert-True (Test-Path -LiteralPath (Join-Path $repo 'KerbalUI.netkan')) 'KerbalUI.netkan is missing.'
 Assert-True (Test-Path -LiteralPath (Join-Path $repo 'Source\Recolor.cs')) 'Generator source is missing.'
+Assert-True (Test-Path -LiteralPath (Join-Path $repo 'Source\Build-Textures.ps1')) 'Texture build entry point is missing.'
+
+$generator = Get-Content -Raw -LiteralPath (Join-Path $repo 'Source\Recolor.cs')
+Assert-True ($generator.Contains('HU_BLUE = 216.0') -and $generator.Contains('0x2F, 0x80, 0xED')) 'Unified Zed-blue palette is missing from the generator.'
 
 $forbidden = @(Get-ChildItem -LiteralPath $repo -Recurse -File | Where-Object {
     $_.Extension -eq '.dll' -or
@@ -58,9 +62,27 @@ foreach ($texture in $textures) {
     }
 }
 
+$paletteProbe = [Drawing.Bitmap]::new((Join-Path $modRoot 'PluginData\flight\bottomBar_plain.png'))
+$hasZedBlue = $false
+try {
+    for ($y = 0; $y -lt $paletteProbe.Height -and -not $hasZedBlue; $y++) {
+        for ($x = 0; $x -lt $paletteProbe.Width; $x++) {
+            $pixel = $paletteProbe.GetPixel($x, $y)
+            if ($pixel.R -eq 0x2F -and $pixel.G -eq 0x80 -and $pixel.B -eq 0xED) {
+                $hasZedBlue = $true
+                break
+            }
+        }
+    }
+}
+finally {
+    $paletteProbe.Dispose()
+}
+Assert-True $hasZedBlue 'Generated textures do not contain the unified Zed-blue frame color.'
+
 $manifest = Get-Content -Raw -LiteralPath (Join-Path $modRoot 'KerbalUI.version') | ConvertFrom-Json
 $version = "$($manifest.VERSION.MAJOR).$($manifest.VERSION.MINOR).$($manifest.VERSION.PATCH)"
-Assert-True ($version -eq '1.5.0') "Unexpected manifest version: $version"
+Assert-True ($version -eq '1.5.1') "Unexpected manifest version: $version"
 Assert-True ($manifest.URL -eq 'https://raw.githubusercontent.com/javapythonsean-rgb/KerbalUI/main/GameData/KerbalUI/KerbalUI.version') 'Manifest URL does not match the renamed folder.'
 
 $netkan = Get-Content -Raw -LiteralPath (Join-Path $repo 'KerbalUI.netkan') | ConvertFrom-Json

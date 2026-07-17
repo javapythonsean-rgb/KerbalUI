@@ -6,8 +6,10 @@ HUD elements, replacing fonts, or running a layout plugin every frame.
 
 ## Features
 
-- Dark navy panels with vivid blue frames.
-- Gold, teal, periwinkle, green, and red interface accents.
+- One dark navy Zed palette across stock and added UI surfaces.
+- Consistent vivid-blue decorative frames and controls.
+- Gold, teal, green, and red remain only where they communicate instrument,
+  status, or warning information.
 - Recolored flight, VAB/SPH, KSC, KAL, and shared UI textures.
 - Matching colors for gauges, staging cards, PAW controls, SAS/RCS indicators,
   maneuver text, and other programmatic UI elements.
@@ -30,9 +32,9 @@ Delete `GameData/KerbalUI`. ZTheme will take over again automatically.
 ## Modification notice
 
 Kerbal UI is a modified derivative of ZTheme by zapSNH. The textures were
-programmatically recolored from ZTheme's originals. Generator source is
-included in the ZIP under `Source/`, which is the preferred form for modifying
-this work.
+programmatically recolored from ZTheme's originals. Generator source and a
+reproducible `Build-Textures.ps1` entry point are included in the ZIP under
+`Source/`, which is the preferred form for modifying this work.
 
 Kerbal UI is licensed under GPL v3, the same license as ZTheme. See `LICENSE`.
 Source is published at https://github.com/javapythonsean-rgb/KerbalUI.
