@@ -1,0 +1,16 @@
+{
+    "spec_version": "v1.27",
+    "identifier": "KerbalUI",
+    "name": "Kerbal UI",
+    "abstract": "A vivid blue, texture-only interface theme for KSP 1 with stock layout and fonts.",
+    "author": "javap",
+    "license": "GPL-3.0-only",
+    "$kref": "#/ckan/spacedock/4391",
+    "$vref": "#/ckan/ksp-avc",
+    "depends": [
+        { "name": "ModuleManager" },
+        { "name": "HUDReplacer" },
+        { "name": "ZTheme" }
+    ],
+    "tags": [ "graphics", "ui" ]
+}
