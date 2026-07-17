@@ -11,7 +11,7 @@ layout DLL, so there is no per-frame layout work from this mod. KUI Overhaul is
 a separate mod and is not bundled here.
 
 Version 1.5.0 fixes the installation package so it works immediately at
-`GameData/ZThemeKSP2`; users no longer have to rename the downloaded folder.
+`GameData/KerbalUI`; the install folder now matches the public mod name.
 It also removes the old layout plugin and font files from the release so Kerbal
 UI does exactly one job: apply the blue theme.
 
@@ -19,6 +19,6 @@ UI does exactly one job: apply the blue theme.
 **Requires:** ModuleManager, HUDReplacer, and ZTheme  
 **License:** GPL-3.0-only
 
-Install the dependencies, then copy `GameData/ZThemeKSP2` into KSP's
+Install the dependencies, then copy `GameData/KerbalUI` into KSP's
 `GameData` folder. README, changelog, license, generator source, KSP-AVC version
 metadata, and CKAN metadata are included in the download.

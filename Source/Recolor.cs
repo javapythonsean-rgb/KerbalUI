@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-// KSP2-style recolor engine for the ZThemeKSP2 texture pack (derived from ZTheme, GPLv3).
+// KSP2-style recolor engine for the Kerbal UI texture pack (derived from ZTheme, GPLv3).
 // v3: adds per-file rules - dark dV boxes w/ gold frames, all-green warp chevrons,
 // KSP2 steel-blue frame tracing on panel backgrounds.
 public static class Ksp2Recolor
@@ -273,4 +273,3 @@ public static class Ksp2Recolor
         }
     }
 }
-

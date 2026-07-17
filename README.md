@@ -17,13 +17,12 @@ HUD elements, replacing fonts, or running a layout plugin every frame.
 ## Install
 
 1. Install ModuleManager, HUDReplacer, and ZTheme.
-2. Copy `GameData/ZThemeKSP2` from this ZIP into KSP's `GameData` folder.
-3. Keep the folder name exactly `ZThemeKSP2`; the config paths are built around
-   that stable internal folder name even though the public mod name is Kerbal UI.
+2. Copy `GameData/KerbalUI` from this ZIP into KSP's `GameData` folder.
+3. Keep the folder name exactly `KerbalUI`; the texture paths use that name.
 
 ## Uninstall
 
-Delete `GameData/ZThemeKSP2`. ZTheme will take over again automatically.
+Delete `GameData/KerbalUI`. ZTheme will take over again automatically.
 
 ## Modification notice
 
